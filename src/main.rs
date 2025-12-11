@@ -1,5 +1,6 @@
 mod shell;
 mod search;
+mod ai;
 
 use anyhow::Result;
 use clap::{Parser, Subcommand};

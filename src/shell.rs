@@ -2,6 +2,8 @@ use anyhow::Result;
 use rustyline::{error::ReadlineError, DefaultEditor};
 use crate::search::search_files;
 use std::path::PathBuf;
+use crate::ai::interpret_command;
+
 
 fn clear_terminal() {
     #[cfg(target_os = "windows")]
@@ -57,6 +59,21 @@ pub fn run_shell() -> Result<()> {
                     continue;
                 }
 
+                if input.starts_with("ai ") {
+                    let query = input.replace("ai ", "");
+
+                    match interpret_command(&query) {
+                        Ok(action) => {
+                            println!("🤖 AI interpreted:\n{:#?}", action);
+                            // Next: execute based on intent
+                        }
+                        Err(err) => {
+                            println!("❌ AI Error: {err}");
+                        }
+                    }
+
+                    continue;
+                }
 
                 if input.starts_with("where is") || input.starts_with("find") {
                     let query: String = input
