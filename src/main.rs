@@ -2,6 +2,9 @@ mod shell;
 mod search;
 mod ai;
 mod engine;
+mod embedding;
+mod vector_db;
+mod similarity;
 
 use anyhow::Result;
 use clap::{Parser, Subcommand};
