@@ -3,6 +3,7 @@ use rustyline::{error::ReadlineError, DefaultEditor};
 use crate::search::search_files;
 use std::path::PathBuf;
 use crate::ai::interpret_command;
+use crate::engine::execute_action;
 
 
 fn clear_terminal() {
@@ -65,6 +66,7 @@ pub fn run_shell() -> Result<()> {
                     match interpret_command(&query) {
                         Ok(action) => {
                             println!("🤖 AI interpreted:\n{:#?}", action);
+                            execute_action(action);
                             // Next: execute based on intent
                         }
                         Err(err) => {
