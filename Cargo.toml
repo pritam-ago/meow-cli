@@ -1,0 +1,14 @@
+[package]
+name = "meow-cli"
+version = "0.1.0"
+edition = "2024"
+
+# This makes the installed binary name just `meow`
+[[bin]]
+name = "meow"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+anyhow = "1.0"
+rustyline = "17.0.2"
